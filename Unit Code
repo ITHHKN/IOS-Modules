@@ -11,3 +11,18 @@
     }];
     
 Description : Send AsynchronousRequest
+
+
+
+2- performSelector With Object data passing 
+
+NSArray * arrayOfThingsIWantToPassAlong = 
+    [NSArray arrayWithObjects: @"first", @"second", nil];
+
+[self performSelector:@selector(fooFirstInput:) 
+           withObject:arrayOfThingsIWantToPassAlong  
+           afterDelay:15.0];
+           
+Descriptions :
+You need to encapsulate the data you want to send along into some single Objective C object (e.g. a NSArray, a NSDictionary, some custom Objective C type) 
+and then pass it through the[NSObject performSelector:withObject:afterDelay:] method that is well known and loved.

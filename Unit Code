@@ -26,3 +26,13 @@ NSArray * arrayOfThingsIWantToPassAlong =
 Descriptions :
 You need to encapsulate the data you want to send along into some single Objective C object (e.g. a NSArray, a NSDictionary, some custom Objective C type) 
 and then pass it through the[NSObject performSelector:withObject:afterDelay:] method that is well known and loved.
+
+3 - respondsToSelector
+if ([self.delegate respondsToSelector:@selector(engineDidStartRunning:)]) {
+        [self.delegate engineDidStartRunning:self];
+    }
+    
+Description : 
+You use it pretty much just when you think you need to: to check to see if an object implements the method you are about to call. Usually this is done when you have an optional methods or an informal protocol.
+
+I've only ever used respondsToSelector when I'm writing code that must communicate with a delegate object.

@@ -53,3 +53,28 @@ Example: - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
         destViewController.hidesBottomBarWhenPushed = YES;
     }
 }
+
+5- Table View With Return Case:
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return self.dataSource ? 1 : 0;
+}
+ 
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.dataSource ? self.dataSource.count : 0;
+}
+ 
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    TPSButtonCell *cell = (TPSButtonCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+ 
+    // Fetch Item
+    NSDictionary *item = [self.dataSource objectAtIndex:indexPath.row];
+ 
+    // Configure Table View Cell
+    [cell.titleLabel setText:[NSString stringWithFormat:@"%@ (%@)", item[@"title"], item[@"year"]]];
+    [cell.actionButton addTarget:self action:@selector(didTapButton:) forControlEvents:UIControlEventTouchUpInside];
+ 
+    return cell;
+}
+
+Description : Return TRUE OR FALSE DATA Results 

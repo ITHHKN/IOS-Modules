@@ -36,3 +36,20 @@ Description :
 You use it pretty much just when you think you need to: to check to see if an object implements the method you are about to call. Usually this is done when you have an optional methods or an informal protocol.
 
 I've only ever used respondsToSelector when I'm writing code that must communicate with a delegate object.
+
+
+4- Hide Tab Bar 
+       destViewController.hidesBottomBarWhenPushed = YES;
+Description : 
+Hide the tab bar when move to next view controller 
+
+Example: - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"showRecipeDetail"]) {
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        RecipeDetailViewController *destViewController = segue.destinationViewController;
+        destViewController.recipeName = [recipes objectAtIndex:indexPath.row];
+
+        // Hide bottom tab bar in the detail view
+        destViewController.hidesBottomBarWhenPushed = YES;
+    }
+}

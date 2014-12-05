@@ -78,3 +78,46 @@ Example: - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
 }
 
 Description : Return TRUE OR FALSE DATA Results 
+
+6- Objective-C Blocks......
+
+1- They can be executed in a later time, and not when the code of the scope they have been implemented is being executed.
+2- Their usage leads eventually to a much cleaner and tidier code writing, as they can be used instead of delegate methods, written just in one place and not spread to many files.
+
+ Blocks are objects, so they can be stored to NSArray or NSDictionary data structures, as well as to be returned from methods, even to be assigned to variables.
+ReturnType (^blockName)(Parameters)
+int (^firstBlock)(NSString *param1, int param2);
+void (^showName)(NSString *myName);
+
+NSDate *(^whatDayIsIt)(void);
+
+void (^allVoid)(void);
+
+NSString *(^composeName)(NSString *firstName, NSString *lastName);
+
+ int (^howMany)(int, int) = ^(int a, int b){
+return a + b;
+};
+
+ void (^justAMessage)(NSString *) = ^(NSString *message){
+NSLog(@"%@", message);
+};
+
+ // Declare a block variable.
+void (^xyz)(void);
+
+// Some other code...
+
+// Define the block.
+xyz = ^(void){
+NSLog(@"What's up, Doc?");
+};
+
+@interface ViewController ()
+@property (nonatomic, strong) NSString *(^blockAsAMemberVar)(void);
+
+
+ _blockAsAMemberVar = ^(void){
+return @"This block is declared as a member variable!";
+};
+

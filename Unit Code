@@ -79,3 +79,6 @@ Example: - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
 
 Description : Return TRUE OR FALSE DATA Results 
 
+6- keyboard postion on text Field .
+Class named as void keyboard .
+assign class to the scroll view or view where text fields are placed . Automatically all will be done .

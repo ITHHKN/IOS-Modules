@@ -1,1 +1,86 @@
-- Blocks + completion blocks 
+6- Objective-C Blocks......
+
+1- They can be executed in a later time, and not when the code of the scope they have been implemented is being executed.
+2- Their usage leads eventually to a much cleaner and tidier code writing, as they can be used instead of delegate methods, written just in one place and not spread to many files.
+
+ Blocks are objects, so they can be stored to NSArray or NSDictionary data structures, as well as to be returned from methods, even to be assigned to variables.
+ReturnType (^blockName)(Parameters)
+int (^firstBlock)(NSString *param1, int param2);
+void (^showName)(NSString *myName);
+
+NSDate *(^whatDayIsIt)(void);
+
+void (^allVoid)(void);
+
+NSString *(^composeName)(NSString *firstName, NSString *lastName);
+
+ int (^howMany)(int, int) = ^(int a, int b){
+return a + b;
+};
+
+ void (^justAMessage)(NSString *) = ^(NSString *message){
+NSLog(@"%@", message);
+};
+
+ // Declare a block variable.
+void (^xyz)(void);
+
+// Some other code...
+
+// Define the block.
+xyz = ^(void){
+NSLog(@"What's up, Doc?");
+};
+
+@interface ViewController ()
+@property (nonatomic, strong) NSString *(^blockAsAMemberVar)(void);
+
+
+ _blockAsAMemberVar = ^(void){
+return @"This block is declared as a member variable!";
+};
+float results = ^(float value1, float value2, float value3){
+        return value1 * value2 * value3;
+    } (1.2, 3.4, 5.6);
+
+    NSLog(@"%f", results);
+
+    // Output: 22.848001
+    
+- Variable with start name __ ( __block) are mutable . else by dafult all variables are read only.
+
+One important notice before moving forward is that you should never forget that the completion handler should always be the last parameter in a method. A method can have as many arguments as you want, but always have the completion handler as the last argument in the parameters list.
+----------
+ [self presentViewController:viewController animated:YES completion:^{
+        NSLog(@"View Controller was presented...");
+        
+        // Other code related to view controller presentation...
+    }];
+--------------
+[UIView animateWithDuration:0.5
+                     animations:^{
+                         // Animation-related code here...
+                         [self.view setAlpha:0.5];
+                     }
+                     completion:^(BOOL finished) {
+                         // Any completion handler related code here...
+                         
+                         NSLog(@"Animation is over.");
+                     }];
+-------------
+-(void)addNumber:(int)number1 withNumber:(int)number2 andCompletionHandler:(void (^)(int result))completionHandler{
+    int result = number1 + number2;
+    completionHandler(result);
+}
+----------
+- (void)viewDidLoad
+{
+    ...
+
+    [self addNumber:5 withNumber:7 andCompletionHandler:^(int result) {
+        // We just log the result, no need to do anything else.
+        NSLog(@"The result is %d", result);
+    }];
+}
+A completion handler is the way (technique) for implementing callback functionality using blocks.
+

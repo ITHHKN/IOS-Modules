@@ -1,0 +1,10 @@
+Notifications are the way of an application to communicate with users, especially when it’s not running in the foreground. 
+
+Local notifications: These are notifications specified by the developer and are triggered by the app itself. The exact time that they’ll appear is always scheduled.
+Remote notifications: In this case, the notifications can be split in two subcategories: (a) The push notifications, which are initiated into a web server, then go through the Apple Push Notification servers and finally they’re shown to users at the moment they arrive to the device. (b) The silent notifications, which are actually push notifications, but they’re not shown to the user straight away. Instead, they’re handled internally by the application in order to perform a task, and when everything is ready, a local notification is scheduled to inform the user.
+
+The great news exist in just one important fact: New capabilities have been added to notifications in iOS 8. Simply put, from now on developers are able to specify certain actions that can be taken by the user when a notification is shown, and the application can handle them even without gets launched in the foreground.
+
+Alert or Banner: Depending on the preferences the user sets in the Settings, a notification can be shown using either an alert view or a banner. Both of them should contain the message of the notification (which can be localized).
+Sound: You can “tell” iOS to playback either a predefined or a custom sound when the notification is fired. That’s quite useful, as in most cases users won’t look at the device all the time, so any presented notifications can be easily overlooked. However, in less critical notifications, sounds could be just omitted.
+Badge: A badge number can also be shown in the app’s icon when a new notification is fired. The badge number must be increased by one with a new notification, and then decreased when the notification is handled. iOS automatically shows and hides the badge, depending on whether there’s a value other than zero to display.
